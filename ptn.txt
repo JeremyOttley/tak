@@ -1,0 +1,25 @@
+class Ptn
+  # the regex is in javascript notation, convert it with named captures to ruby
+  def initialize
+      @matchdata = notation.match(/(\d)?([CS])?([a-h])([1-8])(([<>+-])([1-8]+)?(\*)?)?/)
+  end
+
+end
+
+##: What does it say in java script notation?
+/(\d)?([CS])?([a-h])([1-8])(([<>+-])([1-8]+)?(\*)?)?/
+
+#1. match zero or one digit character
+
+#2. match zero or one "C" or "S"
+
+#3. match any character between "a" and "h"
+
+#4. match any number between 1 and 8
+
+#5. match zero or more of "<>+-",
+# followed by zero or more of any number between 1 and 8 - the plus means matches a string that contains at least one ??
+(([<>+-])([1-8]+)?
+
+#6. match zero or more asterisks
+(\*)?)?
