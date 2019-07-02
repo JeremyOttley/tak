@@ -1,0 +1,92 @@
+= AsciiDoc Article Title
+Firstname Lastname <author@asciidoctor.org>
+1.0, July 29, 2014, Asciidoctor 1.5 article template
+:toc: left
+:icons: font
+
+Original content: https://www.reddit.com/r/Tak/wiki/ptn_file_format[PTN File Format]
+
+== PTN File Format
+
+A PTN file is a file containing all of the moves of a game along with all of the information about the game which allows it to be shared, replayed, and archived for study or analysis. The PTN file is modeled after the https://en.wikipedia.org/wiki/Portable_Game_Notation[PGN] file of chess; if any areas are uncertain in this doc, it is likely that the PGN documentation can be consulted to help develop and answer.
+
+There are 2 main parts to a PTN file.
+
+. The header tags.
+. The movetext.
+
+=== Header Tags
+
+Tag format: [Tag_Name "Tag Data"]
+
+Tags are enclosed in square brackets [ ] and have a name and then quote-enclosed data. Tag names should be replicated exactly as they are presented here in order to be a correctly formatted PTN file.
+Tag names consist only of letters, numbers, and the underscore _ character, no spaces are permitted.
+Tag data may contain any character except for the double quote, which is used to enclose it, including spaces.
+
+There are a number of tags which are required in a PTN file, and many more that should be included whenever possible.
+
+=== Required Tags
+
+These tags should always be included and are required for a strictly valid PTN file.
+
+[%header, format=csv]
+|===
+Tag_Name, Example Data, Description
+Player1, "BenWo", The (full) name of the person acting as player 1.
+Player2, "ts52", The (full) name of hte person acting as player 2.
+Date, "2019.11.22", The full date the game took place in the format YYYY.MM.DD
+Size, "5", The size of the board the game took place on. Generally 4 5 6  or 8
+Result, "R-0" etc, The result code. See https://www.reddit.com/r/Tak/wiki/portable_tak_notation#wiki_game_end[PTN doc].
+|===
+
+=== Recommended Tags
+
+These tags should be included whenever possible, in order to have as much information about the game as possible.
+
+// TABLE HERE
+
+=== Movetext
+
+The movetext portion of a PTN file is described in the PTN specification and follows the header tag section.
+
+See https://www.reddit.com/r/Tak/wiki/portable%20tak%20notation[PTN specification] for details.
+
+=== Example
+
+A full PTN file should appear roughly like this:
+
+----
+[Event "First Video for Tak Strategy"]
+[Site "PlayTak.com"]
+[Date "2015.11.15"]
+[Round "1"]
+[Player1 "BenWo"]
+[Player2 "JT (Mongoose1021)"]
+[Size "5"]
+[Result "0-R"]
+
+1.  e5  a1
+2.  c3  d2
+3.  e3  Cd3
+4.  Cc2 d4
+5.  c2> Sc2
+6.  Sd1 c4
+7.  a4  b4
+8.  a4> c4<
+9.  c5  c4
+10. c5- d4<
+11. c3+ 2b4>
+12. Sa4 c5
+13. b1  d3<
+14. 1d2< d5
+15. Sb5 c3+
+16. a4> a4
+17. b5> a5
+18. 2c5>11 b5
+19. 2e5< 4c4+
+20. 2b4> e5
+21. 4d5> 1c5-
+22. Sd5 3c4>12 0-R
+----
+
+
