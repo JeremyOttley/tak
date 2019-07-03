@@ -1,0 +1,95 @@
+= Tak, playtak (PTN) rules
+== Stretch goal - output PTN files with all the moves
+
+https://medium.com/@baweaver/tak-sequencing-movesets-in-js-815b72851650[Tak in JS]
+
+== PTN - PlayTak Notation
+
+[width="50%",frame="topbot",options="header,footer"]
+|======================
+|PTN  |Description
+|+        |move up
+|-        |move down
+|>        |move right
+|<        |move left
+|         |
+|======================
+
+
+== Scoring System:
+record score and save it
+
+== Clock:
+* clock counting down that stops for each turn
+* two separate clocks - only one going at a time
+
+[source,ruby]
+----
+t = Time.new(0)
+countdown_time_in_seconds = 600 # 10 minutes
+
+countdown_time_in_seconds.downto(0) do |seconds|
+  puts (t + seconds).strftime('%H:%M:%S') # change puts to store the info as opposed to printing it
+  sleep 1
+end
+----
+
+=== Capstone: // 1
+"C".to_sym
+
+=== Standing Stone: // upto 21 I guess
+"S".to_sym
+
+=== PTN:
+
+// Ptn {
+//   ptn: '3c3>111',
+//   pieceCount: '3',
+//   specialPiece: undefined,
+//   column: 'c',
+//   row: '3',
+//   movement: '>111',
+//   direction: '>',
+//   distribution: '111',
+//   wallSmash: undefined,
+//   pieceType: 'piece',
+//   x: 2,
+//   y: 2
+// }
+
+// ptn.to_moveset
+
+// [{
+//   action: 'pop', count: 3, x: 2, y: 2
+// }, {
+//   action: 'push', count: 1, x: 3, y: 2
+// }, {
+//   action: 'push', count: 1, x: 4, y: 2
+// }, {
+//   action: 'push', count: 1, x: 5, y: 2
+// }]
+
+////
+
+// match name must have regular format
+[source,ruby]
+----
+# Display status message
+def status(message)
+  puts('[' + Time.now.strftime('%X') + '] ' + message)
+end
+
+# Loading configuration
+data = {
+  'version' => 'Motyl 1.0.2',
+  'updated' => Time.now.strftime('%Y-%m-%dT%XZ'),
+  'site' => YAML.load_file('motyl.conf'),
+  'posts' => [],
+  'categories' => {}
+}
+
+// create a function to write the time to a ptn file 
+def write_to_ptn(action)
+  #
+end
+----
