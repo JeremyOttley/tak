@@ -1,3 +1,182 @@
-= tak
+= Portable Tak Notation                             
+Jeremy Ottley <jeremy.ottley@gmail.com>
+//7.03.2019
+:description: Breakdown of PTN                                          
+:sectnums:                                                          
+:toc: left                                                              
+:toclevels: 4                                                       
+:toc-title: Contents 
+//:stylesdir: /Users/jmo/.stylesheets/
+//:stylesheet: tufte.css
+:icon: font
 
 https://github.com/Haseeb-Qureshi/Ruby-Chess[Ruby-Chess Example]
+
+Portable Tak Notation (*PTN*) is a simple text notation system for recording the moves of a game of Tak. The standard is loosely based on the https://en.wikipedia.org/wiki/Portable_Game_Notation[PGN] standard of chess notation.
+
+When sharing a game recorded in *PTN* format, additional metadata must be included as specified in the https://www.reddit.com/r/Tak/wiki/ptn%20file%20format[*PTN* File Format].
+
+== PTN File Format
+
+There are 2 main parts to a PTN file.
+
+. The header tags.
+. The movetext.
+
+The basic arrangement of *PTN* moves is similar to that of the PGN of chess. Each move is first numbered. The number must be followed by a period. Then a space and the move notation for player 1, followed by another space and the move notation for player 2.
+
+There is another space, or a newline, before the next move number.
+
+=== Header Tags
+
+Tag format: [Tag_Name "Tag Data"]
+
+Tags are enclosed in square brackets [ ] and have a name and then quote-enclosed data. Tag names should be replicated exactly as they are presented here in order to be a correctly formatted PTN file.
+Tag names consist only of letters, numbers, and the underscore _ character, no spaces are permitted.
+Tag data may contain any character except for the double quote, which is used to enclose it, including spaces.
+
+There are a number of tags which are required in a PTN file, and many more that should be included whenever possible.
+
+=== Required Tags
+
+These tags should always be included and are required for a strictly valid PTN file.
+
+[%header, format=csv]
+|===
+Tag_Name, Example Data, Description
+Player1, "BenWo", The (full) name of the person acting as player 1.
+Player2, "ts52", The (full) name of hte person acting as player 2.
+Date, "2019.11.22", The full date the game took place in the format YYYY.MM.DD
+Size, "5", The size of the board the game took place on. Generally 4 5 6  or 8
+Result, "R-0" etc, The result code. See https://www.reddit.com/r/Tak/wiki/portable_tak_notation#wiki_game_end[PTN doc].
+|===
+
+=== Recommended Tags
+
+These tags should be included whenever possible, in order to have as much information about the game as possible.
+
+// TABLE HERE
+
+=== Movetext
+
+The movetext portion of a PTN file is described in the PTN specification and follows the header tag section.
+
+See https://www.reddit.com/r/Tak/wiki/portable%20tak%20notation[PTN specification] for details.
+
+=== Example
+
+A full PTN file should appear roughly like this:
+
+----
+[Event "First Video for Tak Strategy"]
+[Site "PlayTak.com"]
+[Date "2015.11.15"]
+[Round "1"]
+[Player1 "BenWo"]
+[Player2 "JT (Mongoose1021)"]
+[Size "5"]
+[Result "0-R"]
+
+1.  e5  a1
+2.  c3  d2
+3.  e3  Cd3
+4.  Cc2 d4
+5.  c2> Sc2
+6.  Sd1 c4
+7.  a4  b4
+8.  a4> c4<
+9.  c5  c4
+10. c5- d4<
+11. c3+ 2b4>
+12. Sa4 c5
+13. b1  d3<
+14. 1d2< d5
+15. Sb5 c3+
+16. a4> a4
+17. b5> a5
+18. 2c5>11 b5
+19. 2e5< 4c4+
+20. 2b4> e5
+21. 4d5> 1c5-
+22. Sd5 3c4>12 0-R
+----
+
+== Board
+
+The squares on the Tak board are identified with standard algebraic notation. The lower (or nearest) left square for player 1 is identified as a1, this will be called a __square identifier___. The files are lettered across the bottom of the board, and the ranks are numbered up the side. As the board size in Tak is able to vary, the upper right square can range from d4 to h8. The file letters are always lowercase.
+
+In general, the a1 square is a dark square purely by force of habit, but as there is no difference due to orientation of squares in Tak this is not an official standard and makes no difference to play. Also, though the 1 rank is presumed to be on the player 1 side of the board, it is not strictly necessary for players to sit opposite one another since the pieces are placed arbitrarily on the board during play. Only ensure that the personal space of a player is not being encroached upon.
+
+== Move Notation
+
+PTN is essentially condensed english in the format of a set of instructions.
+For example:
+
+Take 5 stones from square b4 and move them right dropping 2 stones, 1 stone, then 2 stones as you come to each square.
+
+OR
+
+5b4>212
+
+== Stone Identifiers
+
+At the beginning of a game of Tak, you start by placing pieces on the board. There are 3 piece types: Flat Stones, Standing Stones, and Capstones. These are called the stone identifiers and are represented by an F, S, and C throughout the notation. These are always uppercase letters.
+
+== Direction Identifiers
+
+When a stone or stack of stones is being moved on the Tak board, the direction of the move is indicated by the __direction identifiers___. The four possible move directions are represented by the symbols < > + -.
+
+The < and > identifiers represent a movement across files. < moves toward the a file, and > moves the opposite direction, away from the a file. It is easiest to think of these simply as arrows which point in the direction of movement from player 1s perspective, < moving to the __left__, and > moving to the __right__.
+
+The + and - identifiers represent movement up and down ranks. - moves toward the 1 rank, and + moves the opposite direction, away from the 1 rank. It helps to think of these as simple mathematical operators, so that + indicates "adding" or moving __up__ in rank, and - indicates "subtraction" or moving __down__ in rank.
+
+=== Alternate Identifiers
+
+To simplify some displays and the writing of notation by hand, use of regular arrows are also acceptable to show direction of movement. When used, the arrows ↑ ↓ ← → denote the direction of a move from the perspective of player 1.
+
+In other words, arrows ↑ ↓ replace + -, and ← → replace < >.
+
+== Placing Stones
+
+The notation format for placing stones is: (stone)(square).
+
+It is recognized that flat stones will be by far the most common stone placed in a game of Tak, and so the stone identifier may be omitted in that case and a flat stone will be assumed.
+
+// VERBATIM
+
+== Moving Stones
+
+The notation format for moving one or more stones is: (count)(square)(direction)(drop counts)(stone)
+
+. The __count__ of stones to be lifted from a square is given. This may be omitted only if the count is 1.
+. The __square__ wich stones are being moved from is given. This is always required.
+. The direction to move the stones is given. This is always required.
+. The number of stones to drop on each square in the given direction are listed, without spaces. This may be omitted if all of the stones given in the count are dropped on a square immediately adjacent to the source square. If the stack is moving more than one square, all drop counts must be listed and must add up to equal the lift count from parameter 1 above.
+. The stone type of the top stone of the moved stack is given. If the top stone is a flat stone the F identifier is never needed, flat stones are always assumed. If the top stone is a standing stone or capstone, the S or C can be used, though it is not required and infrequently used.
+
+// VERBATIM
+
+== Game End
+
+The result of the game is recorded in the notation after the final move, separated by a space.
+
+A road win for player 1 and player 2 are notated respectively R-0 and 0-R.
+A flat win for player 1 and player 2 are notated respectively F-0 and 0-F.
+A win by resignation or time for player 1 and player 2 are notated respectively 1-0 and 0-1.
+A draw is notated 1/2-1/2.
+
+== Informational Marks
+
+Outside of the essential move notation there are 3 additional characters which can be added to a move to give additional information or commentary regarding that move. These are always placed __at the end__ of the move notation.
+
+The most common mark is a single quote "'". This denotes a "tak": the existence of a road opportunity on your next turn. Whether or not you verbally call the "tak", it is recommended practice to included the mark in your notation to assist with later evaluation. Along with it two single quotes, or a double quote, '' is used to denote a "Tinuë": the existence of an unblockable road threat, and hence a guaranteed win.
+
+The other two characters are the ! and ?, which are purely representative of a subjective evaluation of the move. The ! denotes a surprising or especially good move, while the ? represents a questionable move or blunder. They are often used in pairs to emphasize a move as (for example) an outright blunder ?? or questionable but surprising ?!.
+
+From worst to best the evaluations would roughly be: ?? ? ?! !? ! !!
+
+== Comments
+
+Comments can be added anywhere between moves in the notation to add whatever information you like to the game.
+
+Comments are enclosed in curly brackets { } and separated from any other element by a space or newline. Within the brackets you can include any information you wish and use any character except for the closing bracket }, which would end the comment.
