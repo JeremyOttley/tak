@@ -110,7 +110,7 @@ class Ptn
   end
 
   
-  def stack_matchdata[:distribution]()
+  def stack_matchdata()
     @matchdata[:distribution].split("").map(&:to_i)
   end
   
@@ -121,7 +121,7 @@ class Ptn
       1
     end
     
-    @matchdata[:distribution].split('').reduce {|a, i| a + i.to_i}
+    @matchdata[:distribution].split('').reduce {|a, i| a.to_i + i}
   end
   
 def is_valid_stack_matchdata[:distribution]?()
