@@ -1,0 +1,14 @@
+= Clock module
+
+. Needs to count down from a fixed time (match clock)
+.. wall clock
+. Needs to be able to start and stop for each turn (stop clock)
+.. Monotonic Clock
+
+How can you calculate elapsed time that has constant increments that move only forwards?
+
+.States
+* player_1_turn_start
+* player_1_turn_end
+* match_start
+* match_end
