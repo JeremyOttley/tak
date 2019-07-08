@@ -9,6 +9,8 @@ Jeremy Ottley <jeremy.ottley@gmail.com>
 //:stylesdir: /Users/jmo/.stylesheets/
 //:stylesheet: tufte.css
 :icon: font
+//:nofooter:
+:last-update-label!:
 
 https://github.com/Haseeb-Qureshi/Ruby-Chess[Ruby-Chess Example]
 
