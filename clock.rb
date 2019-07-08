@@ -2,5 +2,5 @@
 starting = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 # time consuming operation
 ending = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-elapsed = ending - starting
-elapsed # => 9.183449000120163 seconds
+elapsed = ((ending - starting) * 100).round / 100.0 # round long float down to hundreths place
+elapsed # => time in seconds
