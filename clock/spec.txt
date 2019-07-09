@@ -1,1 +1,3 @@
 state machine for clock
+
+https://online.visual-paradigm.com/diagram-examples/state-machine-diagram/digital-clock/
