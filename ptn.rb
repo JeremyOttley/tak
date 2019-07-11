@@ -166,16 +166,16 @@ end
   #
   #return Array x and y offsets per direction
   ###
-  def direction_modifier(direction)
-    case @direction = direction
-    when "+" then [0, 1]
-    when "-" then [0, -1]
-    when ">" then [1, 0]
-    when "<" then [-1, 0]
-    else
-      [0, 0]
-    end
+def direction_modifier(direction)
+  case direction
+    when "+" then @direction = [0, 1]
+    when "-" then @direction = [0, -1]
+    when "<" then @direction = [1, 0]
+    when ">" then @direction = [-1, 0]
+    else 
+      @direction = [0, 0]
   end
+end
 
   # private method
   # not correct yet
